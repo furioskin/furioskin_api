@@ -17,3 +17,9 @@ class UserNotFoundException(CustomException):
     code = 404
     error_code = "USER__NOT_FOUND"
     message = "user not found"
+
+
+class UserAlreadyDoctorException(CustomException):
+    code = 400
+    error_code = "USER__ALREADY_DOCTOR"
+    message = "user already doctor"

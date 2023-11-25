@@ -14,7 +14,7 @@ class GetAnswerListResponseSchema(BaseModel):
 class CreateAnswerRequestSchema(BaseModel):
     content: str = Field(..., description="Content")
     userId: int = Field(..., description="userId")
-    questionId: int = Field(..., description="questionId")
+    # questionId: int = Field(..., description="questionId")
 
 
 class CreateAnswerResponseSchema(BaseModel):

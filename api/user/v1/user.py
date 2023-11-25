@@ -2,8 +2,9 @@ from typing import List
 
 from fastapi import APIRouter, Depends, Query
 
-from api.user.v1.request.user import LoginRequest
+from api.user.v1.request.user import LoginRequest, DoctorRequest
 from api.user.v1.response.user import LoginResponse
+from app.doctor.services import DoctorService
 from app.user.schemas import (
     ExceptionResponseSchema,
     GetUserListResponseSchema,
@@ -51,3 +52,11 @@ async def create_user(request: CreateUserRequestSchema):
 async def login(request: LoginRequest):
     token = await UserService().login(email=request.email, password=request.password)
     return {"token": token.token, "refresh_token": token.refresh_token}
+
+
+@user_router.post(
+    "/users/{user_id}/doctors"
+)
+async def set_doctors(user_id: int, request: DoctorRequest):
+
+    await DoctorService().create_doctor(user_id=user_id, hospital=request.hospital)

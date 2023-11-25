@@ -2,6 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends, Query
 
+from app.answer.schemas import CreateAnswerResponseSchema, CreateAnswerRequestSchema
 from app.answer.services import AnswerService
 from app.question.schemas import GetQuestionListResponseSchema, CreateQuestionRequestSchema, \
     CreateQuestionResponseSchema, GetQuestionResponseSchema, GetQuestionWithAnswerResponseSchema
@@ -53,4 +54,13 @@ async def get_one_question(
 async def create_question(request: CreateQuestionRequestSchema):
     await QuestionService().create_question(**request.dict())
     return {"content": request.content, "userId": request.userId}
+
+
+@question_router.post(
+    "/{question_id}/answers",
+    response_model=CreateAnswerResponseSchema,
+)
+async def create_answer(request: CreateAnswerRequestSchema, question_id: int):
+    await AnswerService().create_answer(**request.dict(), questionId=question_id)
+    return {"content": request.content, "userId": request.userId, "questionId": question_id}
 

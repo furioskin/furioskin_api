@@ -18,16 +18,11 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        "answers",
+        "doctors",
         sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
-        sa.Column("content", sa.Unicode(length=10000)),
-        sa.Column("questionId", sa.BigInteger, nullable=False),
+        sa.Column("hospital", sa.Unicode(length=10000)),
         sa.Column("userId", sa.BigInteger, nullable=False),
-        sa.Column("created_at", sa.DateTime(), nullable=False),
-        sa.Column("updated_at", sa.DateTime(), nullable=False),
-        sa.PrimaryKeyConstraint("id"),
     )
-
 
 def downgrade():
     pass

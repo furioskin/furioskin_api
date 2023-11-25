@@ -3,9 +3,8 @@ from typing import List
 from fastapi import APIRouter, Depends, Query
 
 from app.answer.services import AnswerService
-from app.question.models import Question
 from app.question.schemas import GetQuestionListResponseSchema, CreateQuestionRequestSchema, \
-    CreateQuestionResponseSchema, GetQuestionResponseSchema
+    CreateQuestionResponseSchema, GetQuestionResponseSchema, GetQuestionWithAnswerResponseSchema
 from app.question.services import QuestionService
 
 question_router = APIRouter()
@@ -26,17 +25,26 @@ async def get_question_list(
     "/{question_id}",
     response_model=GetQuestionResponseSchema,
 )
-async def get_one_question_with_answer(
+async def get_one_question(
     question_id: int,
 ):
     questions = await QuestionService().get_question(question_id)
     if not questions:
         a = 1/0
     question = questions[0]
+    return {"id": question.id, "content": question.content, "userId": question.userId}
+
+
+@question_router.get(
+    "/{question_id}/answers",
+    response_model=List[GetQuestionWithAnswerResponseSchema],
+)
+async def get_one_question(
+    question_id: int,
+):
     answers = await AnswerService().get_answer_list_by_question_id(question_id)
-    print(len(answers))
-    return {"id": question.id, "content": question.content, "userId": question.userId, "answers": []}
-# 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
+    return answers
+
 
 @question_router.post(
     "",

@@ -2,6 +2,8 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
+from api.answer.response.answer import AnswerResponse
+
 
 class GetQuestionListResponseSchema(BaseModel):
     id: int = Field(..., description="ID")
@@ -12,18 +14,18 @@ class GetQuestionListResponseSchema(BaseModel):
         orm_mode = True
 
 
-class Answer(BaseModel):
+class GetQuestionWithAnswerResponseSchema(BaseModel):
     id: int = Field(..., description="ID")
     content: str = Field(..., description="Content")
     userId: int = Field(..., description="userId")
     questionId: int = Field(..., description="questionId")
-
+    class Config:
+        orm_mode = True
 
 class GetQuestionResponseSchema(BaseModel):
     id: int = Field(..., description="ID")
     content: str = Field(..., description="Content")
     userId: str = Field(..., description="userId")
-    answers: Optional[List[Answer]] = Field(..., description="Answers")
 
     class Config:
         orm_mode = True

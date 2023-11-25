@@ -4,17 +4,16 @@ from fastapi.responses import FileResponse
 
 file_router = APIRouter()
 
-
-@file_router.post("/files/")
-async def create_file(file: Annotated[bytes, File()]):
-    return {"file_size": len(file)}
-
-
 @file_router.post("/uploadfile/")
 async def create_upload_file(file: UploadFile):
+    file_location = f"static/{file.filename}"
+    with open(file_location, "wb+") as file_object:
+        file_object.write(file.file.read())
     return {"filename": file.filename}
 
 
-@file_router.get("/", response_class=FileResponse)
-async def get_file():
-    return FileResponse("/Users/dongwon/workspace/fastapi-boilerplate/static/skin.png", media_type="image/png")
+@file_router.get("/{file_path}", response_class=FileResponse)
+async def get_file(file_path: str):
+    file_path = "static/" + file_path
+    return FileResponse(file_path, media_type="image/png")
+

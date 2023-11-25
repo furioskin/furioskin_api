@@ -19,6 +19,7 @@ class GetQuestionWithAnswerResponseSchema(BaseModel):
     content: str = Field(..., description="Content")
     userId: int = Field(..., description="userId")
     questionId: int = Field(..., description="questionId")
+
     class Config:
         orm_mode = True
 

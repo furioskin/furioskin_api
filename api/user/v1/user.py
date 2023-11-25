@@ -1,10 +1,10 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Query
 
 from api.user.v1.request.user import LoginRequest, DoctorRequest
 from api.user.v1.response.user import LoginResponse
-from app.doctor.services import DoctorService
+# from app.doctor.services import DoctorService
 from app.user.schemas import (
     ExceptionResponseSchema,
     GetUserListResponseSchema,
@@ -12,10 +12,6 @@ from app.user.schemas import (
     CreateUserResponseSchema,
 )
 from app.user.services import UserService
-from core.fastapi.dependencies import (
-    PermissionDependency,
-    IsAdmin,
-)
 
 user_router = APIRouter()
 
@@ -55,7 +51,7 @@ async def login(request: LoginRequest):
 
 
 @user_router.post(
-    "/users/{user_id}/doctors"
+    "/{user_id}/doctors"
 )
 async def set_doctors(user_id: int, request: DoctorRequest):
 

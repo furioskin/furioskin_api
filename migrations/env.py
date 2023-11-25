@@ -28,7 +28,8 @@ fileConfig(config.config_file_name)
 
 # For auto generate schemas
 from core.config import config
-from app.answer.models import *
+# from app.answer.models import *
+from app.board.models import *
 
 target_metadata = Base.metadata
 

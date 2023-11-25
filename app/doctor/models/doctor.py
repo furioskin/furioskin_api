@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Unicode, BigInteger, Boolean
+from sqlalchemy import Column, Unicode, BigInteger
 
 from core.db import Base
 from core.db.mixins import TimestampMixin

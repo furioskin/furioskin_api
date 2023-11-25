@@ -8,7 +8,7 @@ class Config(BaseSettings):
     DEBUG: bool = True
     APP_HOST: str = "127.0.0.1"
     APP_PORT: int = 8000
-    WRITER_DB_URL: str = f"mysql+aiomysql://root:password@localhost:3306/dongwon"
+    WRITER_DB_URL: str = f"sqlite+aiosqlite:////:memory"
     READER_DB_URL: str = f"mysql+aiomysql://root:password@localhost:3306/dongwon"
     JWT_SECRET_KEY: str = "fastapi"
     JWT_ALGORITHM: str = "HS256"
@@ -27,8 +27,8 @@ class DevelopmentConfig(Config):
 
 
 class LocalConfig(Config):
-    WRITER_DB_URL: str = f"mysql+aiomysql://root:password@localhost:3306/dongwon"
-    READER_DB_URL: str = f"mysql+aiomysql://root:password@localhost:3306/dongwon"
+    WRITER_DB_URL: str = f"sqlite+aiosqlite:///.dongwonfile"
+    READER_DB_URL: str = f"sqlite+aiosqlite:///.dongwonfile"
 
 
 class ProductionConfig(Config):

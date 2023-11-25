@@ -32,7 +32,7 @@ class GetQuestionResponseSchema(BaseModel):
 
 class CreateQuestionRequestSchema(BaseModel):
     content: str = Field(..., description="Content")
-    userId: str = Field(..., description="userId")
+    userId: int = Field(..., description="userId")
 
 
 class CreateQuestionResponseSchema(BaseModel):

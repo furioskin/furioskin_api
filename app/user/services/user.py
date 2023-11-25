@@ -10,6 +10,7 @@ from core.exceptions import (
     DuplicateEmailOrNicknameException,
     UserNotFoundException,
 )
+from core.number import get_random_int
 from core.utils.token_helper import TokenHelper
 
 
@@ -47,7 +48,7 @@ class UserService:
         if is_exist:
             raise DuplicateEmailOrNicknameException
 
-        user = User(email=email, password=password1, nickname=nickname)
+        user = User(id=get_random_int(), email=email, password=password1, nickname=nickname)
         session.add(user)
 
     async def is_admin(self, user_id: int) -> bool:

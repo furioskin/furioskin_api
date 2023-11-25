@@ -25,7 +25,7 @@ def upgrade():
         sa.Column("email", sa.Unicode(length=255), nullable=False),
         sa.Column("nickname", sa.Unicode(length=255), nullable=False),
         sa.Column("is_admin", sa.Boolean(), nullable=True),
-        sa.Column("is_admin", sa.Boolean(), nullable=True),
+        sa.Column("is_doctor", sa.Boolean()),
         sa.Column("created_at", sa.DateTime(), nullable=False),
         sa.Column("updated_at", sa.DateTime(), nullable=False),
         sa.PrimaryKeyConstraint("id"),

@@ -5,6 +5,7 @@ from sqlalchemy import or_, select, and_
 from app.question.models import Question
 from app.user.schemas.user import LoginResponseSchema
 from core.db import Transactional, session
+from core.number import get_random_int
 
 
 class QuestionService:
@@ -44,6 +45,6 @@ class QuestionService:
         self, content: str, userId: int
     ) -> None:
 
-        question = Question(content=content, userId=userId)
+        question = Question(id=get_random_int(),content=content, userId=userId)
         session.add(question)
 

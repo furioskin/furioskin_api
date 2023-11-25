@@ -6,6 +6,7 @@ from app.doctor.models import Doctor
 from app.user.models import User
 from app.user.schemas.user import LoginResponseSchema
 from core.db import Transactional, session
+from core.number import get_random_int
 
 
 class DoctorService:
@@ -23,6 +24,6 @@ class DoctorService:
         if is_exist:
             raise 1/0
 
-        doctor = Doctor(userId=user_id, hospital=hospital)
+        doctor = Doctor(id=get_random_int(), userId=user_id, hospital=hospital)
         session.add(doctor)
 

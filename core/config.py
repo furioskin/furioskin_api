@@ -20,8 +20,8 @@ class Config(BaseSettings):
 
 
 class DevelopmentConfig(Config):
-    WRITER_DB_URL: str = f"mysql+aiomysql://root:password@localhost:3306/dongwon"
-    READER_DB_URL: str = f"mysql+aiomysql://root:password@localhost:3306/dongwon"
+    WRITER_DB_URL: str = f"sqlite+aiosqlite:///.dongwonfile"
+    READER_DB_URL: str = f"sqlite+aiosqlite:///.dongwonfile"
     REDIS_HOST: str = "redis"
     REDIS_PORT: int = 6379
 
@@ -33,8 +33,8 @@ class LocalConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG: str = False
-    WRITER_DB_URL: str = f"mysql+aiomysql://root:password@localhost:3306/dongwon"
-    READER_DB_URL: str = f"mysql+aiomysql://root:password@localhost:3306/dongwon"
+    WRITER_DB_URL: str = f"sqlite+aiosqlite:///.dongwonfile"
+    READER_DB_URL: str = f"sqlite+aiosqlite:///.dongwonfile"
 
 
 def get_config():

@@ -61,6 +61,18 @@ def upgrade():
         sa.Column("updated_at", sa.DateTime(), nullable=False),
         sa.PrimaryKeyConstraint("id"),
     )
+
+    op.create_table(
+        "boards",
+        sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
+        sa.Column("userId", sa.BigInteger, nullable=False),
+        sa.Column("categoryId", sa.BigInteger, nullable=False),
+        sa.Column("categoryName", sa.Unicode(length=10000)),
+        sa.Column("content", sa.Unicode(length=10000)),
+        sa.Column("created_at", sa.DateTime(), nullable=False),
+        sa.Column("updated_at", sa.DateTime(), nullable=False),
+        sa.PrimaryKeyConstraint("id"),
+    )
     # ### end Alembic commands ###
 
 

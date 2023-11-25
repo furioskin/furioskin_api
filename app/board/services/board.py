@@ -3,6 +3,8 @@ from core.db import Transactional, session
 from typing import Optional, List
 from sqlalchemy import or_, select, and_
 
+from core.number import get_random_int
+
 
 class BoardService:
     def __init__(self):
@@ -10,10 +12,10 @@ class BoardService:
 
     @Transactional()
     async def create_board(
-        self, user_id: int, category_id: int, content: str
+        self, userId: int, categoryId: int, content: str, categoryName: str
     ) -> None:
 
-        board = Board(userId=user_id, categoryId=category_id, content=content)
+        board = Board(id=get_random_int(),userId=userId, categoryId=categoryId, content=content, categoryName=categoryName)
         session.add(board)
 
 

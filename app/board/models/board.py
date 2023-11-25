@@ -10,4 +10,5 @@ class Board(Base, TimestampMixin):
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     userId = Column(BigInteger, nullable=False)
     categoryId = Column(BigInteger, nullable=False)
+    categoryName = Column(Unicode(10000))
     content = Column(Unicode(10000))
